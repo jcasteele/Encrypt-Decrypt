@@ -17,16 +17,17 @@ def primeSieve(size):
 
     for s in range(2, int(math.sqrt(size)) + 1):
         check = s * 2
-        primeArray = []
+        primeArray = [] 
         
         while(check < size):
             sieve[check] == False
-            check += 1
-            
+            check += 1          
         
         for f in range(size):
             if sieve[f] == True:
                 primeArray.append(f)
+    
+    return primeArray
                 
 def primeMillerRabin(num):
     x = num - 1
@@ -61,20 +62,21 @@ def primeMillerRabin(num):
                     
     return True
 
-LOW_PRIMES = primeSieve(100)
+low_primes = primeSieve(100)
 
 def isPrime(num):
     if (num < 2):
         return False
     
-    for prime in LOW_PRIMES:
+    for prime in low_primes:
         if (num % prime == 0):
             return False
     
     return primeMillerRabin(num)
 
 def largePrime(key = 1024):
-    num = random.randrange(2 ** (key - 1), 2 ** (key))
+    while True:
+        num = random.randrange(2 ** (key - 1), 2 ** (key))
     
-    if isPrime(num):
-        return num
+        if isPrime(num):
+            return num
